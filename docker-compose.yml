@@ -1,0 +1,19 @@
+version: "3.8"
+
+networks:
+  iis:
+    driver: bridge
+
+services:
+  app:
+    container_name: app
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    tty: true
+    ports:
+      - 80:80
+      - 8000:8000
+    networks:
+      - iis
